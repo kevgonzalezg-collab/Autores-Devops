@@ -12,55 +12,64 @@ El proyecto demuestra las mejores prácticas de desarrollo y operaciones: versio
 * **Asignatura:** Ingeniería DevOps (DOY0101)
 
 ---
+---
 
-## 🎯 Objetivos de la Evaluación
+## 🏗️ Justificación del Modelo de Ramificación (GitFlow)
 
-De acuerdo con la rúbrica de la evaluación, el proyecto cubre los siguientes hitos técnicos:
-
-1. **Construcción del Microservicio:** API REST basada en arquitectura en capas utilizando **Spring Boot** e inyección de dependencias.
-2. **Versionado de Código (Git & GitHub):**
-    * Estrategia de ramificación **GitFlow** (`main` para código estable/producción y `develop` para desarrollo e integración).
-    * Commits semánticos y descriptivos según estándares.
-3. **Control de Esquemas de Base de Datos (Flyway):**
-    * Migraciones versionadas en código (`classpath:db/migration`) para garantizar la repetibilidad del entorno.
-    * Creación del esquema base (`V1`) e inserción de datos iniciales (`V2`).
-4. **Persistencia y Entorno Local:** Integración con **MariaDB (XAMPP)** en puerto `3306` y soporte alternativo en memoria **H2** para ejecución aislada de pruebas.
-5. **Preparación para CI/CD:** Estructura compatible con automatizaciones mediante **GitHub Actions** para validación de compilación y empaquetado continuo (`mvn package`).
+Para este proyecto se implementó la estrategia **GitFlow** debido a las siguientes razones técnicas:
+* **Separación de entornos:** Mantiene el código estable y listo para producción aislado en la rama `main`, mientras que la integración continua de cambios se realiza en `develop`.
+* **Control mediante Pull Requests:** Permite auditar y revisar cada cambio antes de ser fusionado, reduciendo riesgos de errores en la rama principal.
+* **Manejo estructurado de incidentes:** Facilita la creación de ramas temporales `feature/*` para nuevas funcionalidades y `hotfix/*` para correcciones urgentes directas sobre `main`.
 
 ---
 
-## 🛠️ Tecnologías y Herramientas
+## 📋 Guía de Buenas Prácticas y Convenciones
 
-* **Lenguaje:** Java 21 (Eclipse Temurin)
-* **Framework:** Spring Boot 3.x / 4.x
-* **Gestor de Dependencias:** Apache Maven
-* **Persistencia:** Spring Data JPA / Hibernate
-* **Migraciones DB:** Flyway Migration Engine
-* **Base de Datos:** MariaDB (XAMPP) / H2 Database
-* **Librerías Adicionales:** Lombok, Jackson JSON
-* **Control de Versiones:** Git / GitHub (Estrategia GitFlow)
+### Naming de Ramas
+* `main`: Código productivo, estable y probado.
+* `develop`: Rama base de desarrollo e integración.
+* `feature/<nombre>`: Funcionalidades nuevas (ejemplo: `feature/actualizar-documentacion`).
+* `hotfix/<nombre>`: Correcciones críticas en producción (ejemplo: `hotfix/corregir-puerto`).
+
+### Convenciones de Commits (Conventional Commits)
+Los mensajes de commit siguen el formato estándar: `<tipo>: <descripción>`
+* `feat:` Nueva funcionalidad añadida.
+* `fix:` Corrección de fallos o errores.
+* `docs:` Cambios o mejoras en la documentación.
+* `ci:` Modificaciones en flujos de automatización (GitHub Actions).
+
+### Flujo de Integración
+* Ningún cambio directo a `main` o `develop`.
+* Todo cambio se realiza en ramas auxiliares y se integra mediante **Pull Requests**.
 
 ---
 
-## 🏗️ Arquitectura de Ramas (GitFlow)
+## ⚙️ Automatización con GitHub Actions
 
-El repositorio sigue la estrategia de ramificación recomendada para entornos DevOps:
+Se implementó un pipeline en `.github/workflows/ci.yml` configurado con los siguientes disparadores (*triggers*):
+* `push` hacia la rama `develop`.
+* `pull_request` hacia la rama `main`.
 
-* **`main`**: Contiene exclusivamente el código listo para producción, validado y estable.
-* **`develop`**: Rama base de integración continua donde se consolidan las funcionalidades y ajustes antes del despliegue.
+**Función en el flujo CI/CD:** Descarga el código fuente, prepara el entorno con OpenJDK 21 (Eclipse Temurin) y compila el microservicio mediante Apache Maven (`mvn clean package -DskipTests`), validando la integridad del proyecto de forma automática.
 
 ---
 
-## 🚀 Requisitos e Instalación
+## 🤖 Declaración de Uso Ético de Inteligencia Artificial
+Se utilizaron herramientas de IA exclusivamente como asistente de redacción, soporte en la sintaxis de comandos Git y estructura documental. El diseño técnico y la ejecución práctica fueron validados por el estudiante.
 
-### Prerrequisitos
-* **JDK 21** o superior instalado y configurado en el `PATH`.
-* **XAMPP Control Panel** (Servicio Apache y MySQL/MariaDB en ejecución en el puerto `3306`).
-* Base de datos llamada `autores` creada en MariaDB (`http://localhost/phpmyadmin`).
+---
 
-### Pasos para Ejecutar
+## 📝 Reflexión Individual de Aprendizaje
 
-1. **Clonar el repositorio:**
-   ```bash
-   git clone [https://github.com/TU_USUARIO/devops-evaluacion1-autores.git](https://github.com/TU_USUARIO/devops-evaluacion1-autores.git)
-   cd devops-evaluacion1-autores
+### Kevis Howard González
+En este encargo apliqué los conceptos fundamentales de DevOps gestionando el ciclo de vida de un 
+microservicio Spring Boot. Aprendí a utilizar Git de forma profesional mediante la estrategia GitFlow, 
+comprendiendo el rol de aislar ramas para proteger el código productivo en `main` y colaborar mediante Pull Requests. 
+Además, comprendí cómo configurar e implementar la integración continua usando GitHub Actions para automatizar 
+tareas con eventos de push y pull request. Mi aporte personal abarcó la totalidad del desarrollo: la preparación del 
+microservicio, la inicialización del repositorio, la creación y fusión de ramas (`feature` y `hotfix`) y 
+la configuración del archivo CI.
+```[cite: 3, 5, 6]
+
+
+
