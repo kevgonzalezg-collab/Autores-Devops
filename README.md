@@ -52,12 +52,6 @@ Se implementó un pipeline en `.github/workflows/ci.yml` configurado con los sig
 
 **Función en el flujo CI/CD:** Descarga el código fuente, prepara el entorno con OpenJDK 21 (Eclipse Temurin) y compila el microservicio mediante Apache Maven (`mvn clean package -DskipTests`), validando la integridad del proyecto de forma automática.
 
----
-
-## 🤖 Declaración de Uso Ético de Inteligencia Artificial
-Se utilizaron herramientas de IA exclusivamente como asistente de redacción, soporte en la sintaxis de comandos Git y estructura documental. El diseño técnico y la ejecución práctica fueron validados por el estudiante.
-
----
 
 ## 📝 Reflexión Individual de Aprendizaje
 
