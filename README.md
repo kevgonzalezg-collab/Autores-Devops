@@ -53,7 +53,7 @@ Para este proyecto se implementó la estrategia **GitFlow** debido a las siguien
 * `main`: Código productivo, estable y probado.
 * `develop`: Rama base de desarrollo e integración.
 * `feature/<nombre>`: Funcionalidades nuevas (ejemplo: `feature/actualizar-documentacion`).
-* `hotfix/<nombre>`: Correcciones críticas en producción (ejemplo: `hotfix/corregir-puerto`).
+* `hotfix/<nombre>`: Correcciones críticas en producción (ejemplo: `hotfix/corregir-puerto`)..
 
 ### Convenciones de Commits (Conventional Commits)
 Los mensajes de commit siguen el formato estándar: `<tipo>: <descripción>`
