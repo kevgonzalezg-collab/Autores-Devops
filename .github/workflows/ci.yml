@@ -20,4 +20,5 @@ jobs:
           cache: maven
 
       - name: Build with Maven
+        working-directory: autores
         run: mvn clean compile test
