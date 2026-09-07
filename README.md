@@ -12,55 +12,49 @@ El proyecto demuestra las mejores prácticas de desarrollo y operaciones: versio
 * **Asignatura:** Ingeniería DevOps (DOY0101)
 
 ---
-
-## 🎯 Objetivos de la Evaluación
-
-De acuerdo con la rúbrica de la evaluación, el proyecto cubre los siguientes hitos técnicos:
-
-1. **Construcción del Microservicio:** API REST basada en arquitectura en capas utilizando **Spring Boot** e inyección de dependencias.
-2. **Versionado de Código (Git & GitHub):**
-    * Estrategia de ramificación **GitFlow** (`main` para código estable/producción y `develop` para desarrollo e integración).
-    * Commits semánticos y descriptivos según estándares.
-3. **Control de Esquemas de Base de Datos (Flyway):**
-    * Migraciones versionadas en código (`classpath:db/migration`) para garantizar la repetibilidad del entorno.
-    * Creación del esquema base (`V1`) e inserción de datos iniciales (`V2`).
-4. **Persistencia y Entorno Local:** Integración con **MariaDB (XAMPP)** en puerto `3306` y soporte alternativo en memoria **H2** para ejecución aislada de pruebas.
-5. **Preparación para CI/CD:** Estructura compatible con automatizaciones mediante **GitHub Actions** para validación de compilación y empaquetado continuo (`mvn package`).
-
----
-
-## 🛠️ Tecnologías y Herramientas
-
-* **Lenguaje:** Java 21 (Eclipse Temurin)
-* **Framework:** Spring Boot 3.x / 4.x
+### Stack Tecnológico
+* **Lenguaje:** Java 17
+* **Framework:** Spring Boot
 * **Gestor de Dependencias:** Apache Maven
-* **Persistencia:** Spring Data JPA / Hibernate
-* **Migraciones DB:** Flyway Migration Engine
-* **Base de Datos:** MariaDB (XAMPP) / H2 Database
-* **Librerías Adicionales:** Lombok, Jackson JSON
-* **Control de Versiones:** Git / GitHub (Estrategia GitFlow)
+* **Control de Versiones:** Git & GitHub
+* **CI/CD:** GitHub Actions
 
 ---
 
-## 🏗️ Arquitectura de Ramas (GitFlow)
+## 2. Justificación Técnica del Modelo GitFlow
+Para este proyecto se implementó la estrategia de ramificación **GitFlow**, respondiendo a los siguientes criterios técnicos y de estabilidad:
 
-El repositorio sigue la estrategia de ramificación recomendada para entornos DevOps:
-
-* **`main`**: Contiene exclusivamente el código listo para producción, validado y estable.
-* **`develop`**: Rama base de integración continua donde se consolidan las funcionalidades y ajustes antes del despliegue.
+* **Separación de Entornos (`main` vs `develop`):**
+   * `main`: Rama estrictamente protegida que contiene únicamente código estable, compilado y validado, representativo del entorno de 
+   * .
+   * `develop`: Rama central de integración continua donde convergen las nuevas características antes de pasar a producción.
+* **Aislamiento de Funcionalidades (`feature/*`):**
+   * Toda nueva funcionalidad o mejora (como `feature/actualizar-documentacion` y `feature/mejora-dto`) se desarrolla en ramas aisladas que 
+   * nacen y se fusionan exclusivamente hacia `develop` mediante Pull Requests.
+   * Esto evita el impacto directo sobre código en producción y previene conflictos concurrentes.
+* **Gestión de Contingencias (`hotfix/*`):**
+   * Ante incidencias críticas detectadas en el entorno productivo, se ramifica directamente desde `main` (ej. `hotfix/ajuste-puerto`). Al resolverse, el cambio se integra a `main` desencadenando la validación del pipeline y asegurando la continuidad operativa del servicio.
 
 ---
 
-## 🚀 Requisitos e Instalación
+## 3. Pipeline de Integración Continua (GitHub Actions)
+La automatización se configuró en el archivo `.github/workflows/ci.yml`. Sus funciones principales son:
+* **Disparadores (Triggers):**
+   * Se ejecuta automáticamente tras cada `push` hacia la rama `develop`.
+   * Se activa ante cada evento `pull_request` con destino a la rama `main`.
+* **Fases del Job:**
+   1. *Checkout del repositorio:* Descarga del código fuente en el runner `ubuntu-latest`.
+   2. *Setup JDK 17:* Configuración del entorno de ejecución Java con Temurin y caché de dependencias Maven.
+   3. *Build y Validación:* Ejecución de `./mvnw clean compile test` para garantizar que no existan errores de sintaxis, 
+  4. dependencias rotas o fallos en pruebas unitarias antes de autorizar fusiones.
 
-### Prerrequisitos
-* **JDK 21** o superior instalado y configurado en el `PATH`.
-* **XAMPP Control Panel** (Servicio Apache y MySQL/MariaDB en ejecución en el puerto `3306`).
-* Base de datos llamada `autores` creada en MariaDB (`http://localhost/phpmyadmin`).
+---
 
-### Pasos para Ejecutar
+## 4. Reflexión Ética y Profesional sobre DevOps
+La implementación de una cultura DevOps va más allá de la simple automatización de herramientas; representa un compromiso directo 
+con la calidad, la seguridad y la transparencia del software entregado al usuario final.
 
-1. **Clonar el repositorio:**
-   ```bash
-   git clone [https://github.com/TU_USUARIO/devops-evaluacion1-autores.git](https://github.com/TU_USUARIO/devops-evaluacion1-autores.git)
-   cd devops-evaluacion1-autores
+* **Responsabilidad Profesional:** Automatizar pruebas y compilaciones tempranas previene que fallos estructurales lleguen a producción,
+* garantizando la continuidad operativa y la confiabilidad del servicio.
+* **Ética y Gobernanza:** Establecer revisiones por medio de Pull Requests y control de versiones asegura trazabilidad absoluta sobre qué
+* cambios se aplican, quién los autoriza y por qué motivo, evitando malas prácticas o vulnerabilidades no auditadas en los sistemas.
