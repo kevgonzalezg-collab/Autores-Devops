@@ -37,7 +37,7 @@ Para este proyecto se implementó la estrategia de ramificación **GitFlow**, re
 
 ---
 
-## 3. Pipeline de Integración Continua (GitHub Actions)
+## 3. Pipeline de Integración (GitHub Actions)
 La automatización se configuró en el archivo `.github/workflows/ci.yml`. Sus funciones principales son:
 * **Disparadores (Triggers):**
    * Se ejecuta automáticamente tras cada `push` hacia la rama `develop`.
@@ -53,6 +53,8 @@ La automatización se configuró en el archivo `.github/workflows/ci.yml`. Sus f
 ## 4. Reflexión Ética y Profesional sobre DevOps
 La implementación de una cultura DevOps va más allá de la simple automatización de herramientas; representa un compromiso directo 
 con la calidad, la seguridad y la transparencia del software entregado al usuario final.
+
+
 
 * **Responsabilidad Profesional:** Automatizar pruebas y compilaciones tempranas previene que fallos estructurales lleguen a producción,
 * garantizando la continuidad operativa y la confiabilidad del servicio.
