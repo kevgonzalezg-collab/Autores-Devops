@@ -1,6 +1,6 @@
 # Microservicio Autores - DevOps
 
-Este repositorio contiene el trabajo realizado para el microservicio de autores, utilizando herramientas y prácticas de DevOps para organizar el desarrollo y mantener el código controlado.
+Este repositorio contiene el trabajo realizado para el microservicio de autores, utilizando herramientas y prácticas de DevOps para organizar el desarrollo.
 
 ## 1. Justificación del Modelo de Ramificación
 
