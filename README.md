@@ -18,13 +18,16 @@ De esta manera, cada integrante puede trabajar en sus cambios de forma más orde
 ## 2. Buenas Prácticas y Convenciones
 
 Para mantener el proyecto organizado, se utilizan las siguientes reglas:
+### Flujo de Integración
 
-### Ramas
+El flujo de trabajo utilizado es el siguiente:
 
-* `main`: versión principal.
-* `develop`: desarrollo del proyecto.
-* `feature/<nombre>`: nuevas funciones.
-* `hotfix/<nombre>`: correcciones urgentes.
+- Las nuevas funcionalidades se desarrollan en ramas `feature/*` creadas desde `develop`.
+- Una vez terminado el cambio, se realiza un Pull Request hacia `develop`.
+- Los cambios son revisados antes de realizar el merge.
+- Las correcciones urgentes se desarrollan en ramas `hotfix/*` creadas desde `main`.
+- Los hotfix se integran mediante Pull Request hacia `main`.
+- Después de un hotfix, los cambios deben mantenerse sincronizados con `develop`.
 
 ### Mensajes de Commit
 
@@ -59,11 +62,6 @@ Esto ayuda a detectar problemas antes de integrar los cambios al proyecto princi
 
 Se utilizó Inteligencia Artificial como apoyo para comprender algunos conceptos, organizar la documentación y revisar comandos utilizados en Git.
 
-Las decisiones finales y el trabajo realizado fueron revisados por los integrantes del equipo.
-
-### Estrategia de Revisión
-
-Los Pull Requests permiten revisar los cambios antes de integrarlos a `develop` o `main`. Se verifica que los cambios correspondan al objetivo de la rama y que no generen problemas en el proyecto.
 
 ### 5. Reflexión Individual
 
