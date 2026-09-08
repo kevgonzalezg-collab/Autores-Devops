@@ -61,6 +61,9 @@ Se utilizó Inteligencia Artificial como apoyo para comprender algunos conceptos
 
 Las decisiones finales y el trabajo realizado fueron revisados por los integrantes del equipo.
 
+### Estrategia de Revisión
+
+Los Pull Requests permiten revisar los cambios antes de integrarlos a `develop` o `main`. Se verifica que los cambios correspondan al objetivo de la rama y que no generen problemas en el proyecto.
 
 ### 5. Reflexión Individual
 
